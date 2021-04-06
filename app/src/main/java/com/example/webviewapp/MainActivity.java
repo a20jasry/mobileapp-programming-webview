@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -35,32 +36,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         WebView myWebView = (WebView) findViewById(R.id.my_webview);
         myWebView.loadUrl("http://www.example.com");
-
-
 
         WebSettings webSettings = myWebView.getSettings();
         webSettings. setJavaScriptEnabled (true);
 
-
         //external
         WebView webView= new WebView(this);
         setContentView(webView);
-        webView.loadUrl("https://synonymer.se//");
+        webView.loadUrl("https://www.youtube.se//");
 
-
-
-
-
-
-
-
-
-
-
+        //internal
+        WebViewClient myWebViewClient= new WebViewClient();
+        myWebView.setWebViewClient(myWebViewClient);
+        myWebView.loadUrl("DEFAULT_URL/");
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -71,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
-
     }
 
     @Override
