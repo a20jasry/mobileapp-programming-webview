@@ -46,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
         webSettings. setJavaScriptEnabled (true);
 
 
+        //internal
+        WebView webView= new WebView(this);
+        setContentView(webView);
+        webView.loadUrl("https://synonymer.se//");
+
+
+
 
 
 
