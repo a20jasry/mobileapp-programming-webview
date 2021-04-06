@@ -17,12 +17,15 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
     private WebView myWebView;
 
+
     public void showExternalWebPage(){
         // TODO: Add your code for showing external web page here
+
     }
 
     public void showInternalWebPage(){
         // TODO: Add your code for showing internal web page here
+
     }
 
     @Override
@@ -33,8 +36,22 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+
         WebView myWebView = (WebView) findViewById(R.id.my_webview);
-        //myWebView.loadUrl("http://www.example.com");
+        myWebView.loadUrl("http://www.example.com");
+
+
+
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings. setJavaScriptEnabled (true);
+
+
+
+
+
+
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
