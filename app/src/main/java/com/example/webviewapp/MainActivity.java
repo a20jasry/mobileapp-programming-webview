@@ -3,6 +3,7 @@ package com.example.webviewapp;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-    private WebView myWebView;
-    private WebViewClient myWebViewClient;
+    private WebView myWebView; // declare an object reference
+    //private WebViewClient myWebViewClient;
 
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -29,14 +30,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myWebView = findViewById(R.id.my_webview);
-        myWebView.loadUrl("https://www.youtube.com");
+        myWebView = findViewById(R.id.my_webview); // Reference to my webview object by id
+        myWebView.loadUrl("https://www.youtube.com"); // link to the external page
 
-        WebSettings webSettings = myWebView.getSettings(); // Enabling JavaScript
-        webSettings.setJavaScriptEnabled (true);
+        WebSettings webSettings = myWebView.getSettings(); //web settings object.
+        webSettings.setJavaScriptEnabled (true); //Enabling JavaScript
 
-        myWebView.setWebViewClient(myWebViewClient); // Handling page navigation
+        // up until this point the code is sett to
+        // default open the URL link in an external web page
 
+
+        myWebView.setWebViewClient(new callback()); // Handling page navigation
+        myWebView.loadUrl("https://www.instagram.com"); // link to the internal page
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class callback extends WebViewClient { // webview client that ove rides the first kode
+        public boolean shouldOverridKeyevent(WebView view, KeyEvent event){
+            return false;
+
+        }
     }
 }
 
