@@ -1,5 +1,6 @@
 package com.example.webviewapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,17 +18,21 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private WebView myWebView;
+    private WebViewClient myWebViewClient;
 
 
     public void showExternalWebPage(){
-        // TODO: Add your code for showing external web page here
+        myWebView.loadUrl("https://www.youtube.com"); // load the page with:
 
     }
 
     public void showInternalWebPage(){
-        // TODO: Add your code for showing internal web page here
+        myWebView.loadUrl("https://www.instagram.com"); // load the page with:
+
 
     }
+
+    @SuppressLint("SetJavaScriptEnabled")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +41,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        WebView myWebView = (WebView) findViewById(R.id.my_webview);
-        myWebView.loadUrl("http://www.example.com");
+        WebView myWebView = new WebView(this); // Adding a WebView in onCreate
+        setContentView(myWebView);
 
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings. setJavaScriptEnabled (true);
+        WebSettings webSettings = myWebView.getSettings(); // Enabling JavaScript
+        webSettings.setJavaScriptEnabled (true);
 
-        //external
-        WebView webView= new WebView(this);
-        setContentView(webView);
-        webView.loadUrl("https://www.youtube.se//");
+        myWebView.setWebViewClient(myWebViewClient); // Handling page navigation
 
-        //internal
-        WebViewClient myWebViewClient= new WebViewClient();
-        myWebView.setWebViewClient(myWebViewClient);
-        myWebView.loadUrl("DEFAULT_URL/");
-
-
+        //------------- Corrected----------------------//
+        //WebViewClient myWebViewClient= new WebViewClient();
+        //WebView webView= new WebView(this);
+        //setContentView(webView);
+        //myWebView.setWebViewClient(myWebViewClient);
+        //myWebView.loadUrl("DEFAULT_URL/");
+        //-----------------Action Button----------------------//
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
