@@ -21,19 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private WebViewClient myWebViewClient;
 
 
-    public void showExternalWebPage(){
-        myWebView.loadUrl("https://www.youtube.com"); // load the page with:
-
-    }
-
-    public void showInternalWebPage(){
-        myWebView.loadUrl("https://www.instagram.com"); // load the page with:
-
-
-    }
-
     @SuppressLint("SetJavaScriptEnabled")
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,21 +29,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        WebView myWebView = new WebView(this); // Adding a WebView in onCreate
-        setContentView(myWebView);
+        myWebView = findViewById(R.id.my_webview);
+        myWebView.loadUrl("https://www.youtube.com");
 
         WebSettings webSettings = myWebView.getSettings(); // Enabling JavaScript
         webSettings.setJavaScriptEnabled (true);
 
         myWebView.setWebViewClient(myWebViewClient); // Handling page navigation
 
-        //------------- Corrected----------------------//
-        //WebViewClient myWebViewClient= new WebViewClient();
-        //WebView webView= new WebView(this);
-        //setContentView(webView);
-        //myWebView.setWebViewClient(myWebViewClient);
-        //myWebView.loadUrl("DEFAULT_URL/");
-        //-----------------Action Button----------------------//
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,3 +76,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
