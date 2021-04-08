@@ -19,7 +19,26 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private WebView myWebView; // declare an object reference
-    //private WebViewClient myWebViewClient;
+    private WebViewClient MyWebviewClient;
+
+
+
+
+    public void showExternalWebPage(){
+        myWebView.loadUrl("https://www.youtube.com"); // link to the external page
+        Log.d("==>","Will display external web page");
+
+    }
+
+    public void showInternalWebPage(){
+        WebViewClient  myWebViewClient = new  WebViewClient();
+        myWebView.setWebViewClient(MyWebviewClient);
+       // myWebView.setWebViewClient(new callback()); // Handling page navigation
+        myWebView.loadUrl ("file:///android_asset/Jasons-app.html");// link to the internal page
+        Log.d("==>","Will display internal web page");
+
+
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -64,26 +83,23 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_external_web) {
-            myWebView.loadUrl("https://www.youtube.com"); // link to the external page
-            Log.d("==>","Will display external web page");
-            return true;
+            showExternalWebPage();
+            //return true;
         }
 
         if (id == R.id.action_internal_web) {
-            myWebView.setWebViewClient(new callback()); // Handling page navigation
-            myWebView.loadUrl("https://www.instagram.com"); // link to the internal page
-            Log.d("==>","Will display internal web page");
-            return true;
+            showInternalWebPage();
+            //return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private class callback extends WebViewClient { // webview client that ove rides the first kode
-        public boolean shouldOverridKeyevent(WebView view, KeyEvent event){
-            return false;
+    //private class callback extends WebViewClient { // webview client that ove rides the first kode
+      //  public boolean shouldOverridKeyevent(WebView view, KeyEvent event){
+        //    return false;
 
-        }
-    }
+        //}
+    //}
 }
 
