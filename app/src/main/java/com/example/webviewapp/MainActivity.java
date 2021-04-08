@@ -33,12 +33,17 @@ public class MainActivity extends AppCompatActivity {
     public void showInternalWebPage(){
         WebViewClient  myWebViewClient = new  WebViewClient();
         myWebView.setWebViewClient(MyWebviewClient);
-       // myWebView.setWebViewClient(new callback()); // Handling page navigation
         myWebView.loadUrl ("file:///android_asset/Jasons-app.html");// link to the internal page
         Log.d("==>","Will display internal web page");
+        // myWebView.setWebViewClient(new callback()); // Handling page navigation
 
 
     }
+    //private class callback extends WebViewClient { // webview client that ove rides the first kode
+    //  public boolean shouldOverridKeyevent(WebView view, KeyEvent event){
+    //    return false;
+    //}
+    //}
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -95,11 +100,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //private class callback extends WebViewClient { // webview client that ove rides the first kode
-      //  public boolean shouldOverridKeyevent(WebView view, KeyEvent event){
-        //    return false;
 
-        //}
-    //}
 }
 
