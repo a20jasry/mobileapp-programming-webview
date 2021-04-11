@@ -39,7 +39,7 @@ called  "private WebViewClient MyWebviewClient;" inside the public class and tha
 ```
 WebViewClient  myWebViewClient = new  WebViewClient();
         myWebView.setWebViewClient(MyWebviewClient);
-        myWebView.loadUrl ("file:///android_asset/Jasons-app.html");// link to the internal page
+        myWebView.loadUrl ("file:///android_asset/Jasons-app.html");
 ```
 For external i  just need a myWebView.loadUrl link.
 All of this code was first placed inside the OnCreate function.
