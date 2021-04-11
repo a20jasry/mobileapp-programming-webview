@@ -1,42 +1,63 @@
 
-# Rapport
+# Rapport Assignment 2: WebView
 
-**Skriv din rapport här!**
+The purpose of this assignment was to add un web view element inside my app making
+it possible to display one external web page and one internal web page.
 
-_Du kan ta bort all text som finns sedan tidigare_.
 
-## Följande grundsyn gäller dugga-svar:
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+I made un ID name in the content_main file and name it my_Webview.
+I den connected that to my MainActivity file by writing the code line showing down below.
+```
+myWebView = findViewById(R.id.my_webview);
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+
+combined with that i allowed my app to have internet access by adding the following code line in my
+AndroidManifest file.
+```
+    <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
 
-Läs gärna:
+I added a Web setting and enabled the javascript interface that webview uses to create an
+interface between the javascript code and the client side code.
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+```
+  WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled (true);
+```
+
+
+I also setup the code need to have one external page and one internal page.
+As much as i understood to make an Internal i had to first make a Html file and then combined it by
+make a new data typ called WebViewClient
+however i couldn't make myWebViewClient to become active. eventually I declare a new  object reference
+called  "private WebViewClient MyWebviewClient;" inside the public class and that made it work.
+
+```
+WebViewClient  myWebViewClient = new  WebViewClient();
+        myWebView.setWebViewClient(MyWebviewClient);
+        myWebView.loadUrl ("file:///android_asset/Jasons-app.html");// link to the internal page
+```
+For external i  just need a myWebView.loadUrl link.
+All of this code was first placed inside the OnCreate function.
+
+
+
+We were given a kind of template that made it possible to have both an external and Internal link at the same time,
+and witch between them using the dropdown menu code given to us as the template.
+i first put only the URL code inside the public void showExternalWebPage and showInternalWebPage
+function but I couldn't seem to active the function itself.
+
+I tried a couple of different examples and even made a "private class callback extends WebViewClient"
+But nothing really worked. I did some more googling and asked a class mate and eventually figured out
+that i have to put all the code for both external and internal inside the public void function and then
+call that function inside public boolean onOptionsItemSelected using the If statements.
+
+
+
+![](external.png)
+![](internal.png)
+
