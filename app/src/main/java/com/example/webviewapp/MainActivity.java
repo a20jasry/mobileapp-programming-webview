@@ -19,7 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private WebView myWebView; // declare an object reference
-    private WebViewClient MyWebviewClient;
+    //private WebViewClient MyWebviewClient;
+
 
 
 
@@ -31,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showInternalWebPage(){
-        WebViewClient  myWebViewClient = new  WebViewClient();
-        myWebView.setWebViewClient(MyWebviewClient);
         myWebView.loadUrl ("file:///android_asset/Jasons-app.html");// link to the internal page
         Log.d("==>","Will display internal web page");
         // myWebView.setWebViewClient(new callback()); // Handling page navigation
@@ -54,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         myWebView = findViewById(R.id.my_webview); // Reference to my webview object by id
+        WebViewClient  myWebViewClient = new  WebViewClient();
+        myWebView.setWebViewClient(myWebViewClient);
+
 
         WebSettings webSettings = myWebView.getSettings(); //web settings object.
         webSettings.setJavaScriptEnabled (true); //Enabling JavaScript
